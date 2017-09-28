@@ -242,7 +242,7 @@ class DocDrawingThread extends DrawingThread {
         // Set the scale and in-memory context for the pending thread
         this.lastScaleFactor = scale;
         this.pageEl = getPageEl(this.annotatedElement, this.location.page);
-        this.drawingContext = getContext(this.pageEl, CLASS_ANNOTATION_LAYER_DRAW_IN_PROGRESS);
+        this.drawingContext = getContext(this.pageEl, CLASS_ANNOTATION_LAYER_DRAW_IN_PROGRESS, true);
 
         const config = { scale };
         this.setContextStyles(config);
@@ -289,7 +289,7 @@ class DocDrawingThread extends DrawingThread {
         }
 
         const config = { scale: this.lastScaleFactor };
-        this.concreteContext = getContext(this.pageEl, CLASS_ANNOTATION_LAYER_DRAW);
+        this.concreteContext = getContext(this.pageEl, CLASS_ANNOTATION_LAYER_DRAW, true);
 
         this.setContextStyles(config, this.concreteContext);
 

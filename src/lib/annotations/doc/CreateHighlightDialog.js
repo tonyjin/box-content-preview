@@ -321,7 +321,7 @@ class CreateHighlightDialog extends EventEmitter {
      * @return {void}
      */
     stopPropagation(event) {
-        event.stopPropagation();
+        // event.stopPropagation();
     }
 
     /**

@@ -345,11 +345,10 @@ export function scaleCanvas(pageEl, annotationLayerEl) {
  *
  * @param {HTMLElement} pageEl - The DOM element for the current page
  * @param {string} annotationLayerClass - The class name for the annotation layer
- * @param {number} [paddingTop] - The top padding of each page element
- * @param {number} [paddingBottom] - The bottom padding of each page element
+ * @param {boolean} [insertAboveText] - Whether or not to insert above text layer
  * @return {RenderingContext|null} Context or null if no page element was given
  */
-export function getContext(pageEl, annotationLayerClass) {
+export function getContext(pageEl, annotationLayerClass, insertAboveText = false) {
     if (!pageEl) {
         return null;
     }
@@ -362,7 +361,12 @@ export function getContext(pageEl, annotationLayerClass) {
         annotationLayerEl = scaleCanvas(pageEl, annotationLayerEl);
 
         const textLayerEl = pageEl.querySelector('.textLayer');
-        pageEl.insertBefore(annotationLayerEl, textLayerEl);
+
+        if (insertAboveText) {
+            pageEl.appendChild(annotationLayerEl);
+        } else {
+            pageEl.insertBefore(annotationLayerEl, textLayerEl);
+        }
     }
 
     return annotationLayerEl.getContext('2d');
